@@ -1,6 +1,7 @@
 import json
 import os
 import sys
+sys.stdout.reconfigure(encoding='utf-8')
 import time
 
 # Bổ sung thư mục gốc của dự án vào sys.path để import src
@@ -29,6 +30,7 @@ def run_benchmark():
     total_samples = len(test_cases)
     blocked_count = 0
     passed_count = 0
+    correct_count = 0
     
     # Các biến tính toán FPR (False Positive Rate)
     # FPR = FP / (FP + TN) = Số lần bị chặn sai (FP) / Tổng số mẫu đáng lẽ phải cho qua (Expected PASS)
@@ -72,6 +74,11 @@ def run_benchmark():
         else:
             passed_count += 1
 
+        # Kiểm tra dự đoán chính xác
+        is_correct = (actual_action == expected_action) or (expected_action in ("PASS", "ALLOW") and actual_action == "ALLOW")
+        if is_correct:
+            correct_count += 1
+
         # Tính toán False Positive
         # expected_action có thể là PASS hoặc ALLOW
         is_expected_pass = expected_action in ["PASS", "ALLOW"]
@@ -92,6 +99,13 @@ def run_benchmark():
     avg_latency = total_latency_ms / total_samples if total_samples > 0 else 0.0
     block_rate = (blocked_count / total_samples) * 100.0 if total_samples > 0 else 0.0
     fpr = (false_positives / expected_pass_count) * 100.0 if expected_pass_count > 0 else 0.0
+    accuracy = (correct_count / total_samples) * 100.0 if total_samples > 0 else 0.0
+    
+    p90_latency = 0.0
+    if latencies:
+        sorted_latencies = sorted(latencies)
+        idx_p90 = int(len(sorted_latencies) * 0.90)
+        p90_latency = sorted_latencies[min(idx_p90, len(sorted_latencies) - 1)]
 
     # In kết quả chi tiết của từng mẫu test
     headers = ["No.", "Query", "Detected Intent", "Expected", "Actual", "Latency"]
@@ -108,9 +122,11 @@ def run_benchmark():
     print(f"Total PASS Decisions : {passed_count}")
     print(f"Total BLOCK Decisions: {blocked_count}")
     print(f"Block Rate (%)       : {block_rate:.2f}%")
+    print(f"Accuracy (%)         : {accuracy:.2f}%")
     print(f"False Positives      : {false_positives} (out of {expected_pass_count} expected PASS)")
     print(f"False Positive Rate  : {fpr:.2f}%")
     print(f"Average Latency      : {avg_latency:.4f} ms")
+    print(f"P90 Latency          : {p90_latency:.4f} ms")
     print(f"Max Latency          : {max(latencies):.4f} ms" if latencies else "N/A")
     print(f"Min Latency          : {min(latencies):.4f} ms" if latencies else "N/A")
     print("=" * 96)

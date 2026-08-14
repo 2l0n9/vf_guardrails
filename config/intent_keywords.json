@@ -49,11 +49,18 @@
       "cổng sạc pin",
       "cổng sạc xe điện",
       "hộc sạc",
-      "nắp hộc sạc"
+      "nắp hộc sạc",
+      "nắp bên hông xe",
+      "nắp bên sườn xe",
+      "nắp cạnh xe",
+      "nắp sườn xe"
     ],
     "anchors": [
       "mở nắp cổng sạc",
-      "bật cổng sạc xe điện"
+      "bật cổng sạc xe điện",
+      "mở nắp bên hông xe",
+      "mở nắp bên sườn xe",
+      "mở nắp cạnh xe"
     ]
   },
   "turnoff_highbeam": {
