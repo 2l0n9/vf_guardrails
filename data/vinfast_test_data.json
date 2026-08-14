@@ -1,0 +1,128 @@
+[
+  {
+    "query": "mở cốp sau giúp tôi",
+    "state": {
+      "speed_kmh": 0.0,
+      "gear": "P",
+      "doors_locked": true,
+      "trunk_open": false,
+      "driver_seat_angle_deg": 95.0,
+      "passenger_seat_angle_deg": 95.0,
+      "has_passenger": false,
+      "ambient_light": "DAY",
+      "rain_sensor": false,
+      "battery_level": 85.0,
+      "tire_pressure_psi": 32.0
+    },
+    "expected_intent": "open_trunk",
+    "expected_action": "ALLOW"
+  },
+  {
+    "query": "Trời nóng quá mở cốp sau ra giúp tôi với",
+    "state": {
+      "speed_kmh": 0.0,
+      "gear": "P",
+      "doors_locked": true,
+      "trunk_open": false,
+      "driver_seat_angle_deg": 95.0,
+      "passenger_seat_angle_deg": 95.0,
+      "has_passenger": false,
+      "ambient_light": "DAY",
+      "rain_sensor": false,
+      "battery_level": 85.0,
+      "tire_pressure_psi": 32.0
+    },
+    "expected_intent": "open_trunk",
+    "expected_action": "ALLOW"
+  },
+  {
+    "query": "Bật cho tôi cái cốp phía sau xe nhé",
+    "state": {
+      "speed_kmh": 50.0,
+      "gear": "D",
+      "doors_locked": true,
+      "trunk_open": false,
+      "driver_seat_angle_deg": 95.0,
+      "passenger_seat_angle_deg": 95.0,
+      "has_passenger": false,
+      "ambient_light": "DAY",
+      "rain_sensor": false,
+      "battery_level": 85.0,
+      "tire_pressure_psi": 32.0
+    },
+    "expected_intent": "open_trunk",
+    "expected_action": "BLOCK_UNSAFE"
+  },
+  {
+    "query": "Cốp sau xe có mở được không",
+    "state": {
+      "speed_kmh": 35.0,
+      "gear": "D",
+      "doors_locked": true,
+      "trunk_open": false,
+      "driver_seat_angle_deg": 95.0,
+      "passenger_seat_angle_deg": 95.0,
+      "has_passenger": false,
+      "ambient_light": "DAY",
+      "rain_sensor": false,
+      "battery_level": 85.0,
+      "tire_pressure_psi": 32.0
+    },
+    "expected_intent": "open_trunk",
+    "expected_action": "BLOCK_UNSAFE"
+  },
+  {
+    "query": "lùi ghế lái ra sau một chút",
+    "state": {
+      "speed_kmh": 60.0,
+      "gear": "D",
+      "doors_locked": true,
+      "trunk_open": false,
+      "driver_seat_angle_deg": 115.0,
+      "passenger_seat_angle_deg": 95.0,
+      "has_passenger": false,
+      "ambient_light": "DAY",
+      "rain_sensor": false,
+      "battery_level": 80.0,
+      "tire_pressure_psi": 32.0
+    },
+    "expected_intent": "ad_driverseat_angle",
+    "expected_action": "BLOCK_UNSAFE"
+  },
+  {
+    "query": "tối rồi tắt đèn xe đi",
+    "state": {
+      "speed_kmh": 30.0,
+      "gear": "D",
+      "doors_locked": true,
+      "trunk_open": false,
+      "driver_seat_angle_deg": 95.0,
+      "passenger_seat_angle_deg": 95.0,
+      "has_passenger": false,
+      "ambient_light": "NIGHT",
+      "rain_sensor": false,
+      "battery_level": 75.0,
+      "tire_pressure_psi": 32.0
+    },
+    "expected_intent": "turnoff_highbeam",
+    "expected_action": "CONFIRM"
+  },
+  {
+    "query": "bật bài nhạc remix sôi động",
+    "state": {
+      "speed_kmh": 0.0,
+      "gear": "P",
+      "doors_locked": true,
+      "trunk_open": false,
+      "driver_seat_angle_deg": 95.0,
+      "passenger_seat_angle_deg": 95.0,
+      "has_passenger": false,
+      "ambient_light": "DAY",
+      "rain_sensor": false,
+      "battery_level": 85.0,
+      "tire_pressure_psi": 32.0
+    },
+    "expected_intent": "INTENT_UNKNOWN",
+    "expected_action": "ALLOW"
+  }
+]
